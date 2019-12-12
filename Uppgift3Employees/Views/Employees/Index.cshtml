@@ -1,0 +1,20 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>All Employees</h1>
+
+<ul>
+    @foreach (var emp in Model)
+    {
+    <li>@emp.Name | <a asp-controller="employees" asp-action="details" asp-route-id="@emp.Id">Details</a> </li>
+        
+    }
+</ul>
+
+<a asp-controller="employees" asp-action="create">Add new employee</a>
+
+
+

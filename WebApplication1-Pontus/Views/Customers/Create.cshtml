@@ -1,0 +1,29 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h3>Create Customer</h3>
+    <form asp-controller="customers" asp-action="create">
+        <label>Company Name</label>
+        <input type="text" name="companyName" />
+        <br />
+
+        <label>City</label>
+        <input type="text" name="city" />
+
+        <input type="submit" value="Create" />
+
+    </form>
+
+</body>
+</html>

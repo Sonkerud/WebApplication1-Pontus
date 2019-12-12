@@ -1,0 +1,42 @@
+﻿@model Uppgift2HundASP.Models.DogImager
+@using Uppgift2HundASP.Models
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h3>Create Dog</h3>
+<form action="/dogs/create" method="post">
+
+    <label asp-for="Dog.Name"></label>
+    <input asp-for="Dog.Name"/>
+    <br />
+
+    <label asp-for="Dog.Age"></label>
+    <input asp-for="Dog.Age"/>
+    <br />
+
+    <label>Bild-länk</label>
+    <input asp-for="Dog.ImgSrc" />
+    <br />
+
+    <div class="container">
+        <div class="card-columns">
+            @foreach (var item in Model.ImgSrcList)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <img src="~/img/@item" height="150px" />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Create" />
+
+
+</form>
+

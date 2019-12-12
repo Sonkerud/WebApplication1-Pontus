@@ -1,0 +1,26 @@
+﻿@model WebApplication1_Pontus.Models.Customer[]
+@using WebApplicationASP
+@namespace WebApplicationASP.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Customers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+</head>
+<body>
+    <div>
+        <h3>All Customers</h3>
+        <span class="container">@DateTime.Now</span>
+        <ul style="background-color:red " ;>
+            @foreach (var item in Model)
+            {
+                <li>@item.CompanyName</li>
+            }
+
+        </ul>
+        <a class="btn btn-primary" asp-controller="customers" asp-action="create">Create</a>
+    </div>
+</body>
+</html>

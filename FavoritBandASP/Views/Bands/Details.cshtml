@@ -1,0 +1,32 @@
+﻿@model Uppgift1FavoritBandASP.Models.Band
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+</head>
+<body>
+    <h1>@Model.Name</h1>
+
+    <div><p>@Model.Description</p></div>
+    <img src="~/img/@Model.imgUrl"/>
+    
+    <ul>
+        @foreach (var item in Model.albums)
+        {
+            <li>
+                @item
+            </li>
+        }
+        <h1>TEST</h1>
+
+    </ul>
+
+</body>
+</html>
+
+
+

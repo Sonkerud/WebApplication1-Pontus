@@ -1,0 +1,24 @@
+﻿@model Uppgift2HundASP.Models.Dog
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<form action="/dogs/edit/@Model.Id" method="post">
+    <input type="hidden" />
+    <div class="form-group">
+
+        <label asp-for="Name"></label>
+        <input type="text" name="name" value="@Model.Name" class="form-control" placeholder="The dog name" />
+    </div>
+    <div class="form-group">
+
+        <label>Age</label>
+        <input type="text" name="age" class="form-control" value="@Model.Age" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Edit the dog!</button>
+</form>
+
+
+

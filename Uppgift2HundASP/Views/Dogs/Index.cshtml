@@ -1,0 +1,41 @@
+﻿@model Uppgift2HundASP.Models.Dog[]
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="card-header text-center bg-warning"><h3>All Dogs</h3></div>
+    
+<br />
+    <div class="card-columns">
+
+        @foreach (var dog in Model)
+        {
+            <div class="card">
+
+                <div class="card-header text-center bg-primary text-white"> @dog.Name är @dog.Age år gammal</div>
+                
+                <div class="card-body text-center" style="min-height:100px">
+                    <div><img src="~/img/@dog.ImgSrc" class="rounded-circle" style="height: 150px" /></div>
+                    <br />
+                </div>
+                
+                <div class="card-footer text-center bg-white"> 
+                    <form action="/dogs/delete/@dog.Id" method="post">
+                        <button class="btn btn bg-danger text-white" type="submit" name="delete">Delete</button>
+                        <a class="btn bg-success" href="/dogs/edit/@dog.Id">Edit</a>
+                    </form>
+                </div>
+
+            </div>
+        }
+    </div>
+<br />
+    <div style="border: 4px solid blue; border-radius: 10px">
+        <a class="btn btn-block btn-primary text-center" href="/dogs/create"><h2>Create new dog</h2></a>
+    </div>
+
+
+
+
+
+
