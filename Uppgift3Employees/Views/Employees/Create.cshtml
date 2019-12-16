@@ -5,18 +5,23 @@
 }
 
 
-<form asp-controller="employees" asp-action="create">
-    <label asp-for="Name"></label>
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
+    <form asp-controller="employees" asp-action="create">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
 
-    <label asp-for="Email"></label>
-    <input asp-for="Email" />
-    <span asp-validation-for="Email"></span>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
 
 
-    <input type="submit" value="Add employee" />
-</form>
+        <label asp-for="CompanyId"></label>
+        <input asp-for="CompanyId" />
+        <span asp-validation-for="CompanyId"></span>
+
+
+        <input type="submit" value="Add employee" />
+    </form>
 
 @section Scripts {
 

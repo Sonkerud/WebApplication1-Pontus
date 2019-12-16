@@ -1,0 +1,17 @@
+﻿@model Company[]
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Companies</h1>
+
+<ul>
+    @foreach (var emp in Model)
+    {
+        <li>@emp.CompanyName | <a asp-controller="company" asp-action="details" asp-route-id="@emp.Id">Details</a> | <a asp-controller="company" asp-action="delete" asp-route-id="@emp.Id">Delete</a> </li>
+
+    }
+</ul>
+
+<a asp-controller="company" asp-action="create">Add new company</a>
+

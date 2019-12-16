@@ -6,39 +6,32 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Uppgift3Employees.Models.Entities;
 
 namespace Uppgift3Employees.Models
 {
     public class EmployeesService
     {
-        static int idCounter = 1;
+        private readonly EmployeeContext context;
 
-        public static List<Employee> employeesList = new List<Employee>()
+        public EmployeesService(EmployeeContext context)
         {
-            new Employee{Id = idCounter++, Name="Alexander", Email="alexander.sonerud@hotmail.com"},
-            new Employee{Id = idCounter++, Name="Martin", Email="martin@hotmail.com"},
-            new Employee{Id = idCounter++, Name="Viktor", Email="viktor@hotmail.com"}
-        };
+            this.context = context;
+        }
+        public Employee[] GetAllEmployees()
+        {
+            return context.Employee.ToArray();
+        }
 
         public void AddEmployee(Employee employee)
         {
-            employee.Id = idCounter++;
-            employeesList.Add(employee);
-
+            context.Employee.Add(employee);
+            context.SaveChanges();
         }
-        public void AddEmployeeJson(Employee employee, List<Employee> list)
-        {
-            employee.Id = idCounter++;
-            list.Add(employee);
-        }
-
-        public Employee[] GetAllEmployees()
-        {
-            return employeesList.OrderBy(e=>e.Name).ToArray();
-        }
+ 
         public Employee GetEmployeeById(int id) {
             
-            var employees = GetEmployees();
+            var employees = GetAllEmployees();
             
             return employees.Single(e => e.Id == id);
         } 
@@ -56,7 +49,7 @@ namespace Uppgift3Employees.Models
         public void AddEmployeeJson(Employee employee)
         {
             var employeesJson = GetEmployees();
-            employee.Id = employeesJson.Count() + 1;
+            employee.Id = employeesJson.Max(x=> x.Id) + 1;
             employeesJson.Add(employee);
           
             using (var outputStream = File.OpenWrite(@"C:\Users\Alexander\source\repos\WebApplication1-Pontus\Uppgift3Employees\wwwroot\data\employees.json"))
@@ -71,7 +64,28 @@ namespace Uppgift3Employees.Models
                 );
             }
         }
-        
-        
+
+        public void DeleteEmployeeJson(int id)
+        {
+            var employeesJson = GetEmployees();
+            var employeeToDelete = employeesJson.Single(e => e.Id == id);
+
+            employeesJson.Remove(employeeToDelete); 
+
+            using (var outputStream = File.OpenWrite(@"C:\Users\Alexander\source\repos\WebApplication1-Pontus\Uppgift3Employees\wwwroot\data\employees.json"))
+            {
+                JsonSerializer.Serialize<IEnumerable<Employee>>(
+                    new Utf8JsonWriter(outputStream),
+                    employeesJson
+                );
+            }
+        }
+        public void DeleteEmployee(int id)
+        {
+            var employeesJson = GetAllEmployees();
+            var employeeToDelete = employeesJson.Single(e => e.Id == id);
+            context.Employee.Remove(employeeToDelete);
+            context.SaveChanges(); 
+        }
     }
 }

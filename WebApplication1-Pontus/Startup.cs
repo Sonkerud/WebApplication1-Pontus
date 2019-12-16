@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApplication1_Pontus.Models;
 
 namespace WebApplication1_Pontus
 {
@@ -17,6 +18,11 @@ namespace WebApplication1_Pontus
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //För dependency injection. Kunna skapa instans av CustomerService i konstruktorn för controllern.
+
+            //services.AddTransient<CustomerService>();
+            //Gör saker statiska utan att de är satt till static. Konstruktorn för Customer Service körs bara en gång
+            services.AddSingleton<CustomerService>();
 
         }
 

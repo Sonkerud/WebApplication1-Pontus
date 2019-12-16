@@ -9,7 +9,12 @@ namespace WebApplication1_Pontus.Controllers
 {
     public class CustomersController : Controller
     {
-        CustomerService service = new CustomerService();
+        CustomerService service;
+
+        public CustomersController(CustomerService service)
+        {
+            this.service = service;
+        }
 
         [Route("")]
         public IActionResult Index()

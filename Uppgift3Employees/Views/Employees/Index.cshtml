@@ -1,4 +1,4 @@
-﻿@model List<Employee>
+﻿@model Employee[]
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,8 +9,8 @@
 <ul>
     @foreach (var emp in Model)
     {
-    <li>@emp.Name | <a asp-controller="employees" asp-action="details" asp-route-id="@emp.Id">Details</a> </li>
-        
+    <li>@emp.Name | <a asp-controller="employees" asp-action="details" asp-route-id="@emp.Id">Details</a> | <a asp-controller="employees" asp-action="delete" asp-route-id="@emp.Id">Delete</a> <p>@emp.CompanyId @emp.Company</p></li>
+
     }
 </ul>
 

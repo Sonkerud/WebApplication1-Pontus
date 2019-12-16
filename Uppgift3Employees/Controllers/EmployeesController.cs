@@ -4,19 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Uppgift3Employees.Models;
+using Uppgift3Employees.Models.Entities;
 
 namespace Uppgift3Employees.Controllers
 {
     public class EmployeesController : Controller
     {
-        EmployeesService service = new EmployeesService();
+        EmployeesService service;
+
+
+        public EmployeesController(EmployeesService service)
+        {
+            this.service = service;
+        }
+
         [Route ("")]
         [Route ("Index")]
         public IActionResult Index()
         {
             //var arrayOfEmployees = service.GetAllEmployees();
-            var hej = service.GetEmployees();
-            return View(hej);
+            var model = service.GetAllEmployees();
+            return View(model);
         }
 
         [Route("employee/create")]
@@ -34,7 +42,7 @@ namespace Uppgift3Employees.Controllers
                 return View(employee);
             }
 
-            service.AddEmployeeJson(employee);
+            service.AddEmployee(employee);
 
             return RedirectToAction(nameof(Index));
         }
@@ -48,5 +56,12 @@ namespace Uppgift3Employees.Controllers
             return View(employee);
         }
 
+        [Route("employees/delete/{id}")]
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            service.DeleteEmployee(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Uppgift3Employees.Models
 {
-    public class Employee
-    {
+    //public class Employee
+    //{
        
-        public int Id { get; set; }
+    //    public int Id { get; set; }
         
-        [Required(ErrorMessage ="Ange namn")]
-        public string Name { get; set; }
-        //[HardCodedEmail("acme.com")]
-        [Required(ErrorMessage = "Ange Email")]
-        [Display (Name = "E-mail")]
-        [EmailAddress(ErrorMessage="Not correct email-input ")]
-        public string  Email { get; set; }
-    }
+    //    [Required(ErrorMessage ="Ange namn")]
+    //    public string Name { get; set; }
+    //    //[HardCodedEmail("acme.com")]
+    //    [Required(ErrorMessage = "Ange Email")]
+    //    [Display (Name = "E-mail")]
+    //    [EmailAddress(ErrorMessage="Not correct email-input ")]
+    //    public string  Email { get; set; }
+    //}
 }

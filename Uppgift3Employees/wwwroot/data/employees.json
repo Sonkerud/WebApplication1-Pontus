@@ -8,25 +8,7 @@
     "Id": 2,
     "Name": "dfdf",
     "Email": "An@hej.com"
-  },
-  {
-    "Id": 3,
-    "Name": "Arne",
-    "Email": "arne@arns.se"
-  },
-  {
-    "Id": 4,
-    "Name": "fff",
-    "Email": "An@hej.se"
-  },
-  {
-    "Id": 5,
-    "Name": "Ruben",
-    "Email": "ruben@ruben.se"
-  },
-  {
-    "Id": 6,
-    "Name": "sd",
-    "Email": "arne@acme.com"
   }
 ]
+
+

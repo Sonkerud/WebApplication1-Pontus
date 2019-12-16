@@ -1,0 +1,19 @@
+﻿
+@model Company
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+<ul>
+        <li>@Model.CompanyName</li>
+        
+        <li> Företags-id: @Model.Id</li>     
+</ul>
+
+<ul>
+    @foreach (var item in Model.Employee)
+    {
+        <li>@item.Name </li>
+    }
+</ul>
