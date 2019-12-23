@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Uppgift3Employees.Models;
 using Uppgift3Employees.Models.Entities;
+using Uppgift3Employees.Models.ViewModels;
 
 namespace Uppgift3Employees.Controllers
 {
     public class CompanyController : Controller
     {
         CompanyService service;
+        EmployeesService serviceEmp;
 
-        public CompanyController(CompanyService service)
+        public CompanyController(CompanyService service, EmployeesService serviceEmp)
         {
             this.service = service;
+            this.serviceEmp = serviceEmp;
         }
 
         [Route("/company")]
@@ -51,9 +54,12 @@ namespace Uppgift3Employees.Controllers
         //[HttpGet]
         public IActionResult Details(int id)
         {
+            EmpComp empComp = new EmpComp();
             var company = service.GetCompanyById(id);
+            empComp.Company = company;
+            //empComp.EmpList = serviceEmp.GetAllEmployees().Where(x => x.CompanyId == company.Id).ToList();
 
-            return View(company);
+            return View(empComp);
         }
     }
 }

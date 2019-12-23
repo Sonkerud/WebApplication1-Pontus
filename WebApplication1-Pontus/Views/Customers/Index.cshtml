@@ -1,5 +1,5 @@
-﻿@model WebApplication1_Pontus.Models.Customer[]
-@using WebApplicationASP
+﻿@model WebApplication1_Pontus.Models.CustomerIndexVM[]
+
 @namespace WebApplicationASP.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -16,7 +16,10 @@
         <ul style="background-color:red " ;>
             @foreach (var item in Model)
             {
-                <li>@item.CompanyName</li>
+                <li>@item.CompanyName
+            
+            </li>
+                
             }
 
         </ul>

@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Uppgift3Employees.Models.Entities;
+using Uppgift3Employees.Models.ViewModels;
 
 namespace Uppgift3Employees.Models
 {
@@ -18,15 +19,34 @@ namespace Uppgift3Employees.Models
         {
             this.context = context;
         }
-        public Employee[] GetAllEmployees()
+        public EmployeeIndexVM[] GetAllEmployees()
         {
-            return context.Employee.ToArray();
+            
+            List<EmployeeIndexVM> output = new List<EmployeeIndexVM>();
+            foreach (var emp in context.Employee)
+            {
+                output.Add(new EmployeeIndexVM {Name = emp.Name, Id = emp.Id, Email = emp.Email });
+            }
+            return output.ToArray();
         }
 
-        public void AddEmployee(Employee employee)
+        public CustomersIndexVM[] GetAllEmployeesVM()
         {
+            return context.Employee.Select( o => new CustomersIndexVM { 
+            CompanyName = o.Company.CompanyName
+            }).ToArray();
+        }
+
+
+        public void AddEmployee(EmployeeCreateVM employeeCVM)
+        {
+            if (employeeCVM.BotCheck)
+            {
+                Employee employee = new Employee { Name = employeeCVM.Name, Email = employeeCVM.Email };
             context.Employee.Add(employee);
-            context.SaveChanges();
+                context.SaveChanges();
+            }
+            
         }
  
         public Employee GetEmployeeById(int id) {
@@ -36,7 +56,7 @@ namespace Uppgift3Employees.Models
             return employees.Single(e => e.Id == id);
         } 
 
-        public List<Employee> GetEmployees()
+        public List<Employee> GetEmployeesJson()
         {
             using (var jsonFileReader = File.OpenText(@"C:\Users\Alexander\source\repos\WebApplication1-Pontus\Uppgift3Employees\wwwroot\data\employees.json"))
             {
@@ -48,7 +68,7 @@ namespace Uppgift3Employees.Models
 
         public void AddEmployeeJson(Employee employee)
         {
-            var employeesJson = GetEmployees();
+            var employeesJson = GetEmployeesJson();
             employee.Id = employeesJson.Max(x=> x.Id) + 1;
             employeesJson.Add(employee);
           
@@ -67,7 +87,7 @@ namespace Uppgift3Employees.Models
 
         public void DeleteEmployeeJson(int id)
         {
-            var employeesJson = GetEmployees();
+            var employeesJson = GetEmployeesJson();
             var employeeToDelete = employeesJson.Single(e => e.Id == id);
 
             employeesJson.Remove(employeeToDelete); 
@@ -82,8 +102,8 @@ namespace Uppgift3Employees.Models
         }
         public void DeleteEmployee(int id)
         {
-            var employeesJson = GetAllEmployees();
-            var employeeToDelete = employeesJson.Single(e => e.Id == id);
+            var employees = GetAllEmployees();
+            var employeeToDelete = employees.Single(e => e.Id == id);
             context.Employee.Remove(employeeToDelete);
             context.SaveChanges(); 
         }

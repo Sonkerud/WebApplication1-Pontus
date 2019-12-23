@@ -1,18 +1,18 @@
 ﻿
-@model Company
+@model EmpComp
 @{
     ViewData["Title"] = "Detail";
 }
 
 <h1>Detail</h1>
 <ul>
-        <li>@Model.CompanyName</li>
+        <li>@Model.Company.CompanyName</li>
         
-        <li> Företags-id: @Model.Id</li>     
+        <li> Företags-id: @Model.Company.Id</li>     
 </ul>
 
 <ul>
-    @foreach (var item in Model.Employee)
+    @foreach (var item in Model.EmpList)
     {
         <li>@item.Name </li>
     }
