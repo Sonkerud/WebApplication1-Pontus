@@ -49,12 +49,12 @@ namespace Uppgift3Employees.Models
             
         }
  
-        public Employee GetEmployeeById(int id) {
+        //public Employee GetEmployeeById(int id) {
             
-            var employees = GetAllEmployees();
+        //    var employees = GetAllEmployees();
             
-            return employees.Single(e => e.Id == id);
-        } 
+        //    //return employees.Single(e => e.Id == id);
+        //} 
 
         public List<Employee> GetEmployeesJson()
         {
@@ -104,7 +104,7 @@ namespace Uppgift3Employees.Models
         {
             var employees = GetAllEmployees();
             var employeeToDelete = employees.Single(e => e.Id == id);
-            context.Employee.Remove(employeeToDelete);
+            //context.Employee.Remove(employeeToDelete);
             context.SaveChanges(); 
         }
     }

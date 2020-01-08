@@ -42,7 +42,7 @@ namespace Uppgift3Employees.Controllers
                 return View(employee);
             }
 
-            service.AddEmployee(employee);
+          //  service.AddEmployee(employee);
 
             return RedirectToAction(nameof(Index));
         }
