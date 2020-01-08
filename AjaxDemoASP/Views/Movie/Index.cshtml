@@ -1,34 +1,49 @@
-﻿@model AjaxDemoASP.Models.ViewModels.MovieVM
+﻿@model MovieVM
 @{
     ViewData["Title"] = "Index";
 }
-@using AjaxDemoASP.Components
+@section scripts{
+    <script>
+        let textBox = document.getElementById("textbox");
+        let getHtml = document.getElementById("getHtml");
 
-<h1>Movie</h1>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+        let getJSON = document.getElementById("getJSON");
 
-            <div class="form-group">
-                <input type="submit" value="Get AJAX" class="btn btn-primary" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Get JSON" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        getHtml.addEventListener("click", getHtmlFunc);
+
+        function test() {
+            console.log("Testa")
+        }
+
+        function getHtmlFunc() {
+            fetch(`Movies/${textBox.value}`,
+                {
+                    method: "GET",
+                })
+                .then(res => res.text())
+                .then(html => document.getElementById("htmlHere").innerHTML = html)
+
+            console.log("klick")
+        }
+        getJSON.addEventListener("click", getJsonFunc);
+
+        function getJsonFunc() {
+            fetch(`MovieData/${textBox.value}`,
+                {
+                    method: "GET",
+                })
+            console.log("klick")
+
+        }
 
 
-<div>
-</div>
+    </script>
+}
+<h1>Index</h1>
+<label asp-for="@Model.Id"></label>
+<input asp-for="@Model.Id" id="textbox" />
+<button id="getHtml">GetHTML</button>
+<button id="getJSON">GetJSON</button>
+<div id="htmlHere"></div>
+<div id="jsonHere"></div>
 
-@(await Html.RenderComponentAsync<PartialDiv>(RenderMode.ServerPrerendered))
-
-<script src="_framework/blazor.server.js"></script>

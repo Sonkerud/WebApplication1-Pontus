@@ -19,8 +19,8 @@ namespace AjaxDemoASP
         {
             services.AddControllersWithViews();
             services.AddSingleton<MoviesServices>();
-            services.AddServerSideBlazor();
-            services.AddRazorPages();
+            //services.AddServerSideBlazor();
+            //services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,9 +35,9 @@ namespace AjaxDemoASP
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub();
+                //endpoints.MapBlazorHub();
                 endpoints.MapControllers();
-                endpoints.MapRazorPages();
+               // endpoints.MapRazorPages();
             });
         }
     }

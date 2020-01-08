@@ -1,10 +1,10 @@
-﻿using AjaxDemoASP.Models.ViewModels;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AjaxDemoASP.Models
+namespace AjaxBlazor.Data
 {
     public class MoviesServices
     {
@@ -18,6 +18,11 @@ namespace AjaxDemoASP.Models
         public MovieVM GetMovieById(int id)
         {
             return listOfMovies.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<MovieVM> GetAllMovies()
+        {
+            return listOfMovies;
         }
 
     }

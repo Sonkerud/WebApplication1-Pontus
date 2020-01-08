@@ -2,12 +2,13 @@
 
 @using AjaxBlazor.Data
 @inject WeatherForecastService ForecastService
+@inject MoviesServices moviesServices
 
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (forecasts == null)
+@if (service.GetAllMovies() == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -16,31 +17,31 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Title</th>
+                <th>Description </th>
+                
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var movie in service.GetAllMovies())
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
+                    <td>@movie.Title</td>
+                    <td>@movie.Description</td>
+                   
+                </tr>    
             }
+            
         </tbody>
     </table>
 }
 
 @code {
-    private WeatherForecast[] forecasts;
-
-    protected override async Task OnInitializedAsync()
+    private List<MovieVM> movies;
+    private MoviesServices service = new MoviesServices();
+    public void SetMovies()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        movies = service.GetAllMovies();
     }
+
 }

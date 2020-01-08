@@ -19,22 +19,20 @@ namespace AjaxDemoASP.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Index(int id)
-        //{
-        //    var movie = service.GetMovieById(id);
-        //    return View(movie);
-        //}
+   
+        [Route("Movies/{id}")]
 
-        [HttpPost]
-        [Route("Index/{id}")]
-
-        public IActionResult Index(int id)
+        public IActionResult Movies(int id)
         {
             var movie = service.GetMovieById(id);
-            return PartialView(movie);
+            return PartialView("_MovieBox",movie);
         }
 
-
+        [Route("MovieData/{id}")]
+        public IActionResult MoviesData(int id)
+        {
+            var movie = service.GetMovieById(id);
+            return Json(movie);
+        }
     }
 }
