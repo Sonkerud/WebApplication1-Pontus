@@ -32,7 +32,7 @@ namespace AjaxDemoASP.Controllers
         public IActionResult MoviesData(int id)
         {
             var movie = service.GetMovieById(id);
-            return Json(movie);
+            return Ok(movie);
         }
     }
 }

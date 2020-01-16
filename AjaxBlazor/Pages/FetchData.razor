@@ -8,40 +8,70 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (service.GetAllMovies() == null)
+@*<form action="/" method="post">
+    <input type="text" name="name" value="insert id" />
+    <input type="submit" class="btn btn-primary" value="push" />
+</form>*@
+
+<input type="text" bind="@MovieId" @onclick="GetMovie" class="btn btn-dark"/>
+
+@if (TheMovie != null)
+{
+    <p>@TheMovie.Title</p>
+}
+
+@if (movies == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    <input type="button" @onclick="SetMovies" class="btn btn-danger" value="Movies">
     <table class="table">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Description </th>
-                
+
             </tr>
         </thead>
         <tbody>
-            @foreach (var movie in service.GetAllMovies())
+            @foreach (var movie in movies)
             {
                 <tr>
                     <td>@movie.Title</td>
                     <td>@movie.Description</td>
-                   
-                </tr>    
+
+                </tr>
+
             }
-            
+
         </tbody>
     </table>
 }
 
 @code {
-    private List<MovieVM> movies;
+    private List<MovieVM> movies = new List<MovieVM>();
     private MoviesServices service = new MoviesServices();
+    public int MovieId { get; set; }
+
+    protected string MyInput { get; set; }
+    public MovieVM TheMovie { get; set; }
+
+
+
     public void SetMovies()
     {
         movies = service.GetAllMovies();
+
+    }
+
+    public void GetMovie()
+    {
+        SetMovies();
+
+        TheMovie =  movies.SingleOrDefault(x => x.Id == MovieId);
+
     }
 
 }

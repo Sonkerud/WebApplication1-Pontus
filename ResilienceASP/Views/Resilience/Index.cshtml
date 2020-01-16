@@ -1,0 +1,21 @@
+﻿@namespace ResilienceASP
+@model ResilienceASP.Models.ViewModels.ResilienceVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>ErrorHandling</h1>
+
+<a class="btn btn-primary" asp-controller="Resilience" asp-action="About">Throw an exception</a>
+<a class="btn btn-primary" href="/geheh">Non existing page</a>
+
+<form action="/resilience/token" method="post">
+
+    <input type="text" name="name" value="hej" />
+
+    <input type="submit" name="name" value="hej" />
+    
+
+</form>

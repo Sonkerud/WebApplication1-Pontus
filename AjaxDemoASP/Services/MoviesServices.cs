@@ -8,17 +8,25 @@ namespace AjaxDemoASP.Models
 {
     public class MoviesServices
     {
-        List<MovieVM> listOfMovies = new List<MovieVM>
+        List<Movie> listOfMovies = new List<Movie>
         {
-            new MovieVM {Id = 1, Title = "Titanic", Description = "A Movie About A Boat"},
-            new MovieVM {Id = 2, Title = "Nalle Puh", Description = "Nalle Puh is a bear"},
-            new MovieVM {Id = 3, Title = "Matrix", Description = "People in black coats"},
+            new Movie {Id = 1, Title = "Titanic", Description = "A Movie About A Boat"},
+            new Movie {Id = 2, Title = "Nalle Puh", Description = "Nalle Puh is a bear"},
+            new Movie {Id = 3, Title = "Matrix", Description = "People in black coats"},
 
         };
         public MovieVM GetMovieById(int id)
         {
-            return listOfMovies.FirstOrDefault(x => x.Id == id);
+            return listOfMovies.Where(x => x.Id == id).Select(x => new MovieVM { 
+            Description = x.Description,
+            Title = x.Title,
+            Id = x.Id
+            }).SingleOrDefault();
         }
 
+        public List<Movie> GetAllMovies()
+        {
+            return listOfMovies;
+        }
     }
 }
