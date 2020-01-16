@@ -11,11 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uppgift2HundASP", "Uppgift2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uppgift3Employees", "Uppgift3Employees\Uppgift3Employees.csproj", "{71997E21-CD76-427D-A383-4DD47F8322B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateDemoAsp", "StateDemoAsp\StateDemoAsp.csproj", "{98FFC93F-079A-4B98-8B68-93249A3BF1DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateDemoAsp", "StateDemoAsp\StateDemoAsp.csproj", "{98FFC93F-079A-4B98-8B68-93249A3BF1DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxDemoASP", "AjaxDemoASP\AjaxDemoASP.csproj", "{D7C0D785-0184-4132-AEA5-59BB7FEBDD72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxDemoASP", "AjaxDemoASP\AjaxDemoASP.csproj", "{D7C0D785-0184-4132-AEA5-59BB7FEBDD72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxBlazor", "AjaxBlazor\AjaxBlazor.csproj", "{ACD5BFF1-E3E3-4FC4-8ACE-CCD5611BB0A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxBlazor", "AjaxBlazor\AjaxBlazor.csproj", "{ACD5BFF1-E3E3-4FC4-8ACE-CCD5611BB0A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxBlazorEmpty", "AjaxBlazorEmpty\AjaxBlazorEmpty.csproj", "{BEB3CF01-EB21-4AE4-8D2A-CB9ED5314730}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{ACD5BFF1-E3E3-4FC4-8ACE-CCD5611BB0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACD5BFF1-E3E3-4FC4-8ACE-CCD5611BB0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACD5BFF1-E3E3-4FC4-8ACE-CCD5611BB0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB3CF01-EB21-4AE4-8D2A-CB9ED5314730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB3CF01-EB21-4AE4-8D2A-CB9ED5314730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB3CF01-EB21-4AE4-8D2A-CB9ED5314730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB3CF01-EB21-4AE4-8D2A-CB9ED5314730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

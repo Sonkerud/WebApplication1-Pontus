@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web;
+@{
+    ViewData["Title"] = "Index";
+}
+@using AjaxBlazorEmpty.Components
+
+<h1>Test i Index</h1>
+<component type="typeof(MovieComponent)" render-mode="ServerPrerendered" />
+
