@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAPI.Services;
 
-namespace Uppgift2HundASP
+namespace WebAPI
 {
     public class Startup
     {
@@ -17,7 +18,8 @@ namespace Uppgift2HundASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddHttpClient();
+            services.AddTransient<PhotosService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,9 +32,10 @@ namespace Uppgift2HundASP
 
             app.UseRouting();
 
-            app.UseStaticFiles();
-
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

@@ -48,13 +48,13 @@ namespace Uppgift3Employees.Controllers
         }
 
         [Route("employees/details/{id}")]
-        //[HttpGet]
-        public IActionResult Details(int id)
-        {
-            var employee = service.GetEmployeeById(id);
+        ////[HttpGet]
+        //public IActionResult Details(int id)
+        //{
+        //    //var employee = service.GetEmployeeById(id);
            
-            return View(employee);
-        }
+        //    //return View(employee);
+        //}
 
         [Route("employees/delete/{id}")]
         [HttpGet]
