@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityASPPontus.Models;
@@ -37,7 +38,11 @@ namespace IdentityASPPontus
                 o.User.RequireUniqueEmail = true;
             }
                 ).AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
+            services.Configure<CookiePolicyOptions>(options => {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
 
+            });
             services.AddHttpContextAccessor();
 
             services.AddAuthentication(
@@ -45,9 +50,15 @@ namespace IdentityASPPontus
                o => o.LoginPath = "/Account/Login");
         }
 
+ 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,6 +71,7 @@ namespace IdentityASPPontus
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {

@@ -34,7 +34,13 @@ namespace IdentityASPPontus.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(Members));
+            } else
+            {
+                return View();
+            }
         }
 
         [Route("Account/Register")]
@@ -110,9 +116,32 @@ namespace IdentityASPPontus.Controllers
         [Route("Account/Members")]
         public async Task<IActionResult> Members()
         {
-            var user = await UserMgr.GetUserAsync(httpContext.HttpContext.User);
+            var  user = await UserMgr.GetUserAsync(httpContext.HttpContext.User);
 
             return View(new UserVM {FirstName = user.FirstName, LastName = user.LastName, Email = user.Email,UserName = user.UserName });
+        }
+
+        [HttpGet]
+        [Route("Account/Edit")]
+        public async Task<IActionResult> Edit()
+        {
+            var user = await UserMgr.GetUserAsync(httpContext.HttpContext.User);
+            return View(new UserVM { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, UserName = user.UserName });
+        }
+
+        [HttpPost]
+        [Route("Account/Edit")]
+        public async Task<IActionResult> Edit(UserVM model)
+        {
+            var user = await UserMgr.GetUserAsync(httpContext.HttpContext.User);
+            
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+
+            //User user = new User { FirstName = model.FirstName, LastName = model.LastName, UserName = model.UserName, Email = model.Email };
+            await UserMgr.UpdateAsync(user);
+            return RedirectToAction(nameof(Members));
         }
     }
 }
