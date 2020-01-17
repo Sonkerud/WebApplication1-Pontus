@@ -12,13 +12,10 @@ namespace IdentityASPPontus.Services
     {
         private readonly IHttpContextAccessor httpContext;
 
-        
-       
         public AccountService(IHttpContextAccessor httpContext)
         {
             this.httpContext = httpContext;
         }
-
 
     }
 }

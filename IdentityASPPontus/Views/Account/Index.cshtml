@@ -3,6 +3,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Medlemssidan</h1>
+@if (TempData["Result"] != null)
+{
+    <p>Login @TempData["Result"]</p>
+}
+
 
 <a asp-controller="Account" asp-action="Register">Register</a>
