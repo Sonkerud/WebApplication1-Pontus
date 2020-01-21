@@ -134,6 +134,7 @@ namespace IdentityASPPontus.Controllers
         public async Task<IActionResult> Edit(UserVM model)
         {
             var user = await UserMgr.GetUserAsync(httpContext.HttpContext.User);
+            var userId =  UserMgr.GetUserId(httpContext.HttpContext.User);
             
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;

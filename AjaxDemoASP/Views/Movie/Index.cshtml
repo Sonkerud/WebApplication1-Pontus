@@ -30,13 +30,28 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            
         </tr>
     </thead>
     <tbody id="movies">
     </tbody>
-</table></div>
-    <div class="col"></div>
-    <div class="col"></div>
+</table>
+    </div>
+
+    <div class="col" style="padding: 20px">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+
+                </tr>
+            </thead>
+            <tbody id="movies1">
+            </tbody>
+        </table>
+    </div>
+ 
 </div>
 
 
@@ -50,7 +65,28 @@
 
         getHtml.addEventListener("click", getHtmlFunc);
 
+        function movieIdMethod(result) {
+
+           
+                $(`#movies`).append(`<tr>
+                <td style='btn btn-primary'>${result.name}</td>
+                
+                </tr>`)
+         
       
+        }
+
+        function ajaxJsonId() {
+            $.ajax({
+                url: `/Movies/${movieID.value}`,
+                type: "GET",
+                success: function (result) {
+                   
+                    movieIdMethod(result);
+
+                }
+            });
+        }
 
         function getHtmlFunc() {
             fetch(`Movies/${textBox.value}`,
@@ -82,9 +118,12 @@
                 success: function (result) {
                    
                     jsonToHtmlBoot(result.actors, result.movies)
+                    let movieID = document.getElementById("a111");
+                    movieID.addEventListener("click", ajaxJsonId);
+
                 }
             });
-
+           
         }
             //function jsonToHtml(list) {
             //    for (var i = 0; i < list.length; i++) {
@@ -95,21 +134,27 @@
 
         function jsonToHtmlBoot(actors, movies) {
 
-            for (var i = 0; i < actors.length; i++) {
+                for (var i = 0; i < actors.length; i++) {
                 $(`#actors`).append(`<tr>
                 <td>${actors[i].name}</td>
                 <td>${actors[i].age}</td>
+                <td id='a${actors[i].id}' class='btn btn-primary'>${actors[i].age}</td>
+
                 </tr>`)
 
-                for (var i = 0; i < movies.length; i++) {
-                    $(`#movies`).append(`<tr>
+                    
+                 }
+
+              for (var i = 0; i < movies.length; i++) {
+                    $(`#movies1`).append(`<tr>
                 <td>${movies[i].title}</td>
                 <td>${movies[i].description}</td>
                 </tr>`)
-
                 }
+
             }
-        }
+              
+            
         
 
     </script>

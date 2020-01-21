@@ -13,6 +13,8 @@ namespace AjaxDemoASP.Models
             new Movie {Id = 1, Title = "Titanic", Description = "A Movie About A Boat"},
             new Movie {Id = 2, Title = "Nalle Puh", Description = "Nalle Puh is a bear"},
             new Movie {Id = 3, Title = "Matrix", Description = "People in black coats"},
+            new Movie {Id = 4, Title = "Mullex", Description = "People in black coatsdf"},
+
 
         };
         public MovieVM GetMovieById(int id)
@@ -36,8 +38,10 @@ namespace AjaxDemoASP.Models
                 Movies = listOfMovies,
                 Actors = new List<Actors>
                 {
-                    new Actors { Name = "Rune Andersson", Age = 21},
-                    new Actors { Name = "Bella Bandersson", Age = 31}
+                    new Actors { Id = 111, Name = "Rune Andersson", Age = 21},
+                    new Actors { Id = 222, Name = "Bella Bandersson", Age = 31},
+                    new Actors { Id = 333, Name = "Bo Busson", Age = 31}
+
                 },
                 Title = "Det gröna vågen"
             };
