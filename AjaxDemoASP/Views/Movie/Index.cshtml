@@ -4,29 +4,53 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
 <label asp-for="@Model.Id"></label>
 <input asp-for="@Model.Id" id="textbox" />
 <button id="getHtml">GetHTML</button>
 <button id="getJSON">GetJSON</button>
-<div id="htmlHere"></div>
-<div id="jsonHere"></div>
-<div>
-    @(await Html.RenderComponentAsync<PartialDiv>(RenderMode.ServerPrerendered))
 
+
+<div class="row">
+    <div class="col">
+    <table class="table table-dark table-striped">
+        <thead >
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="actors">
+        </tbody>
+    </table>
 </div>
+    <div class="col">
+    <table class="table table-dark table-striped" >
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody id="movies">
+    </tbody>
+</table></div>
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+
+
+
 @section scripts{
     <script>
+
         let textBox = document.getElementById("textbox");
         let getHtml = document.getElementById("getHtml");
-
         let getJSON = document.getElementById("getJSON");
 
         getHtml.addEventListener("click", getHtmlFunc);
 
-        function test() {
-            console.log("Testa")
-        }
+      
 
         function getHtmlFunc() {
             fetch(`Movies/${textBox.value}`,
@@ -38,19 +62,58 @@
 
             console.log("klick")
         }
-        getJSON.addEventListener("click", getJsonFunc);
+        getJSON.addEventListener("click", ajaxJson);
 
-        function getJsonFunc() {
-            fetch(`MovieData/${textBox.value}`,
-                {
-                    method: "GET",
-                })
-            console.log("klick")
+        //function getJsonFunc() {
+        //    fetch(`MovieData/${textBox.value}`,
+        //        {
+        //            method: "GET",
+        //        }).
+
+
+        //    console.log("klick")
+
+        //}
+
+        function ajaxJson() {
+            $.ajax({
+                url: `/Movies`,
+                type: "GET",
+                success: function (result) {
+                   
+                    jsonToHtmlBoot(result.actors, result.movies)
+                }
+            });
 
         }
+            //function jsonToHtml(list) {
+            //    for (var i = 0; i < list.length; i++) {
+            //        $(`#actors`).append(`<div>${list[i].name}<div>`)
+            //    }
+        //}
+
+
+        function jsonToHtmlBoot(actors, movies) {
+
+            for (var i = 0; i < actors.length; i++) {
+                $(`#actors`).append(`<tr>
+                <td>${actors[i].name}</td>
+                <td>${actors[i].age}</td>
+                </tr>`)
+
+                for (var i = 0; i < movies.length; i++) {
+                    $(`#movies`).append(`<tr>
+                <td>${movies[i].title}</td>
+                <td>${movies[i].description}</td>
+                </tr>`)
+
+                }
+            }
+        }
+        
 
     </script>
-    <script src="_framework/blazor.server.js"></script>
+
 }
 
 

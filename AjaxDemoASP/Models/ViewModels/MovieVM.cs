@@ -11,5 +11,7 @@ namespace AjaxDemoASP.Models.ViewModels
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public List<Actors> Actors { get; set; }
+        public List<Movie> Movies { get; set; }
     }
 }

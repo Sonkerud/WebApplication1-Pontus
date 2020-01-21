@@ -59,5 +59,13 @@ namespace Uppgift2HundASP.Controllers
             service.EditDog(dog);
             return RedirectToAction(nameof(Index));
         }
+
+        [Route("dogs/list/")]
+        [HttpPost]
+        public IActionResult List(Dog[] dog)
+        {
+            //service.EditDog(dog);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

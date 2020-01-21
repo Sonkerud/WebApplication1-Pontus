@@ -28,5 +28,20 @@ namespace AjaxDemoASP.Models
         {
             return listOfMovies;
         }
+
+        public MovieVM GetMovieVM()
+        {
+            var movieVM = new MovieVM
+            {
+                Movies = listOfMovies,
+                Actors = new List<Actors>
+                {
+                    new Actors { Name = "Rune Andersson", Age = 21},
+                    new Actors { Name = "Bella Bandersson", Age = 31}
+                },
+                Title = "Det gröna vågen"
+            };
+            return movieVM;
+        }
     }
 }

@@ -22,17 +22,25 @@ namespace AjaxDemoASP.Controllers
    
         [Route("Movies/{id}")]
 
-        public IActionResult Movies(int id)
+        public IActionResult GetMovie(int id)
         {
             var movie = service.GetMovieById(id);
             return PartialView("_MovieBox",movie);
+        }
+
+        [Route("Movies")]
+
+        public IActionResult Movies()
+        {
+            var movie = service.GetMovieVM();
+            return Json(movie);
         }
 
         [Route("MovieData/{id}")]
         public IActionResult MoviesData(int id)
         {
             var movie = service.GetMovieById(id);
-            return Ok(movie);
+            return Json(movie);
         }
     }
 }
