@@ -38,7 +38,7 @@
 </table>
     </div>
 
-    <div class="col" style="padding: 20px">
+    <div class="col" >
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
@@ -62,31 +62,30 @@
         let textBox = document.getElementById("textbox");
         let getHtml = document.getElementById("getHtml");
         let getJSON = document.getElementById("getJSON");
+        //let movieID;
+
 
         getHtml.addEventListener("click", getHtmlFunc);
+        getJSON.addEventListener("click", getJsonInfo);
 
-        function movieIdMethod(result) {
+        //function movieIdMethod() {
 
-           
-                $(`#movies`).append(`<tr>
-                <td style='btn btn-primary'>${result.name}</td>
+        //    $(`#movies`).append(`<tr>
+        //        <td style='btn btn-primary'>${movieID.innerHTML}</td>
                 
-                </tr>`)
-         
-      
-        }
+        //        </tr>`)
+        //}
 
-        function ajaxJsonId() {
-            $.ajax({
-                url: `/Movies/${movieID.value}`,
-                type: "GET",
-                success: function (result) {
+        //function ajaxJsonId() {
+        //    $.ajax({
+        //        url: `/Movies/${movieID.value}`,
+        //        type: "GET",
+        //        success: function (result) {
                    
-                    movieIdMethod(result);
-
-                }
-            });
-        }
+        //            movieIdMethod(result);
+        //        }
+        //    });
+        //}
 
         function getHtmlFunc() {
             fetch(`Movies/${textBox.value}`,
@@ -98,7 +97,7 @@
 
             console.log("klick")
         }
-        getJSON.addEventListener("click", ajaxJson);
+        
 
         //function getJsonFunc() {
         //    fetch(`MovieData/${textBox.value}`,
@@ -111,37 +110,31 @@
 
         //}
 
-        function ajaxJson() {
+        function getJsonInfo() {
             $.ajax({
                 url: `/Movies`,
                 type: "GET",
                 success: function (result) {
                    
                     jsonToHtmlBoot(result.actors, result.movies)
-                    let movieID = document.getElementById("a111");
-                    movieID.addEventListener("click", ajaxJsonId);
-
+                    //movieID = document.getElementById("a111");
+                    //movieID.addEventListener("click", movieIdMethod);
                 }
             });
            
         }
-            //function jsonToHtml(list) {
-            //    for (var i = 0; i < list.length; i++) {
-            //        $(`#actors`).append(`<div>${list[i].name}<div>`)
-            //    }
-        //}
+   
 
 
         function jsonToHtmlBoot(actors, movies) {
 
                 for (var i = 0; i < actors.length; i++) {
-                $(`#actors`).append(`<tr>
+                $(`#actors`).append(`<tr id='${actors[i].id}'>
                 <td>${actors[i].name}</td>
                 <td>${actors[i].age}</td>
-                <td id='a${actors[i].id}' class='btn btn-primary'>${actors[i].age}</td>
+                <td onclick="selectPlayer('${actors[i].id}','${actors[i].name}', '${actors[i].age}')" class='btn btn-primary'>${actors[i].age}</td>
 
                 </tr>`)
-
                     
                  }
 
@@ -152,10 +145,16 @@
                 </tr>`)
                 }
 
-            }
-              
-            
-        
+        }
+        function selectPlayer(playerId, playerName, playerAge) {
+
+            $(`#movies`).append(`<tr>
+                <td>${playerName} ${playerAge}</td>
+                
+                </tr>`)
+            document.getElementById(playerId).remove;
+        }
+  
 
     </script>
 
